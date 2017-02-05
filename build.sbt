@@ -58,6 +58,36 @@ lazy val registrationImpl = project("registration-impl")
   .settings(lagomForkedTestSettings: _*)
   .dependsOn(registrationApi)
 
+lazy val customerApi = project("customer-api")
+  .settings(
+    version := "1.0-SNAPSHOT",
+    libraryDependencies ++= Seq(
+      lagomJavadslApi,
+      lagomJavadslJackson,
+      "org.projectlombok" % "lombok" % lombokVersion
+    )
+  )
+  .dependsOn(utils)
+
+lazy val customerImpl = project("customer-impl")
+  .enablePlugins(LagomJava)
+  .settings(
+    version := "1.0-SNAPSHOT",
+    libraryDependencies ++= Seq(
+      lagomJavadslTestKit,
+      javaJpa,
+      "org.hibernate" % "hibernate-entitymanager" % hibernateVersion,
+      "org.hibernate" % "hibernate-java8" % hibernateVersion,
+      "org.hibernate" % "hibernate-ehcache" % hibernateVersion,
+      "org.hibernate" % "hibernate-search-orm" % hibernateSearchVersion,
+      "org.hibernate" % "hibernate-search-engine" % hibernateSearchVersion,
+      "org.postgresql" % "postgresql" % postgresDriverVersion,
+      "org.modelmapper" % "modelmapper" % modelMapperVersion
+    )
+  )
+  .settings(lagomForkedTestSettings: _*)
+  .dependsOn(customerApi)
+
 lazy val bookEntryApi = project("bookentry-api")
   .settings(
     version := "1.0-SNAPSHOT",
