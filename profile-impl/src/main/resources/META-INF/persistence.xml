@@ -1,0 +1,37 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+    <persistence-unit name="profilePersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <non-jta-data-source>DefaultDS</non-jta-data-source>
+        <class>system.ticketing.profile.model.AccessRight</class>
+        <class>system.ticketing.profile.model.Profile</class>
+        <class>system.ticketing.profile.model.Role</class>
+        <class>system.ticketing.profile.model.RoleAccessRight</class>
+        <class>system.ticketing.profile.model.AuditTrail</class>
+        <class>system.ticketing.profile.model.Activity</class>
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <!--  configure caching -->
+            <property name="hibernate.cache.use_second_level_cache" value="false"/>
+            <property name="hibernate.cache.use_query_cache" value="false"/>
+            <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
+            <property name="hibernate.generate_statistics" value="false"/>
+            <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+            <property name="hibernate.show_sql" value="false"/>
+            <property name="hibernate.format_sql" value="false"/>
+            <property name="net.sf.ehcache.configurationResourceName" value="META-INF/ehcache.xml"/>
+            <!--  configure hibernate search -->
+            <property name="hibernate.search.default.directory_provider" value="filesystem"/>
+            <property name="hibernate.search.default.indexBase" value="/opt/eSolutions/pundits/lucene/indexes"/>
+            <property name="hibernate.search.worker.execution" value="async"/>
+            <property name="hibernate.search.worker.thread_pool.size" value="1"/>
+            <property name="hibernate.search.worker.buffer_queue.max" value="2"/>
+        </properties>
+
+    </persistence-unit>
+
+</persistence>

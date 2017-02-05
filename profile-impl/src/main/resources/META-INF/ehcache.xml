@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache>
+
+    <!-- By default, Ehcache stored the cached files in temp folder. -->
+    <!-- <diskStore path="java.io.tmpdir" /> -->
+
+    <!-- Ask Ehcache to store cache in this path -->
+    <diskStore path="java.io.tmpdir/ehcache/profile" />
+
+    <defaultCache
+        maxElementsInMemory="10000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="120"
+        overflowToDisk="false"
+        maxElementsOnDisk="10000000"
+        diskPersistent="false"
+        diskExpiryThreadIntervalSeconds="120"
+        memoryStoreEvictionPolicy="LRU"
+    />
+
+    <cache name="org.hibernate.cache.internal.StandardQueryCache"
+           maxEntriesLocalHeap="25"
+           eternal="false"
+           timeToIdleSeconds="1800"
+           timeToLiveSeconds="3600">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+
+    <cache name="org.hibernate.cache.spi.UpdateTimestampsCache"
+           maxEntriesLocalHeap="5000"
+           timeToIdleSeconds="1800"
+           timeToLiveSeconds="3600"
+           eternal="false">
+        <persistence strategy="localTempSwap" />
+    </cache>
+
+    <cache name="system.ticketing.profile.model.Profile"
+           maxEntriesLocalHeap="20"
+           eternal="false"
+           timeToLiveSeconds="600">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+
+    <cache name="system.ticketing.profile.model.Role"
+           maxEntriesLocalHeap="20"
+           eternal="false"
+           timeToLiveSeconds="600">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+
+    <cache name="system.ticketing.profile.model.AccessRight"
+           maxEntriesLocalHeap="100"
+           eternal="false"
+           timeToLiveSeconds="600">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+
+    <cache name="system.ticketing.profile.model.RoleAccessRight"
+           maxEntriesLocalHeap="300"
+           eternal="false"
+           timeToLiveSeconds="600">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+
+    <cache name="system.ticketing.profile.model.Activity"
+           maxEntriesLocalHeap="100"
+           eternal="false"
+           timeToLiveSeconds="600">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+
+    <cache name="system.ticketing.profile.model.AuditTrail"
+           maxEntriesLocalHeap="20"
+           eternal="false"
+           timeToLiveSeconds="600">
+        <persistence strategy="localTempSwap"/>
+    </cache>
+</ehcache>
